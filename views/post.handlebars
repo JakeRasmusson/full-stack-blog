@@ -1,3 +1,12 @@
 <h2>{{{title}}}</h2>
-<h3>{{{owner_id}}}</h3>
+<h3>{{{bloguser.username}}}</h3>
 <p>{{{content}}}</p>
+
+
+<ul>
+    {{#each comments}}
+    <li>
+        <h3>{{this.content}}</h3>
+    </li>
+    {{/each}}
+</ul>

@@ -4,11 +4,9 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 router.post('/', async (req,res) => {
     try {
-        const { title, content, owner_id } = req.body
-        console.log(title, content, owner_id)
-        const post = await Post.create({id: 6 ,title, content, owner_id})
+        const user = await BlogUsers.create(req.body)
         
-        res.status(200).send('Post created Succesfully')
+        res.status(200).send('User created Succesfully')
     } catch (err) {
         console.log(err)
         res.status(400).send('Internal Server Error')
@@ -18,7 +16,7 @@ router.post('/', async (req,res) => {
 router.put('/:id', async (req,res) => {
     try {
         const { id } = req.params
-        const post = await Post.update(req.body, {
+        const user = await BlogUsers.update(req.body, {
             where: {
                 id
             }
@@ -33,7 +31,7 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
         const { id } = req.params
-        const deletePost = await Post.destroy({
+        const deleteUser = await BlogUsers.destroy({
             where: {
                 id
             }

@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const apiRoutes = require('./api')
+const viewRoutes = require('./view')
 
 
 router.use('/api', apiRoutes)
 
-router.get('/', async(req, res) => {
-    res.render('home')
-})
+router.use('/', viewRoutes)
 
 
 
