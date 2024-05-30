@@ -22,6 +22,13 @@ Comments.belongsTo(Post, {
 })
 
 
+BlogUsers.hasMany(Comments, {
+    foreignKey: 'owner_id'
+})
+Comments.belongsTo(BlogUsers, {
+    foreignKey: 'owner_id'
+})
+
 
 module.exports = {
     Post,

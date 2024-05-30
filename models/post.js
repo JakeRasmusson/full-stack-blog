@@ -24,7 +24,7 @@ Post.init(
         owner_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'bloguser',
+                model: bloguser,
                 key: 'id'
             }
         }
