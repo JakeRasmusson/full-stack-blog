@@ -1,28 +1,29 @@
 const router = require('express').Router();
+const { BlogUsers, Post, Comments } = require('../../models')
 
-const post = [{
-    title: 'T1',
-    author: 'jake',
-    id: 0,
-    content: ';lasdfjka;sldfkjas;ldfkja;sldfkj;alskjdfasdf'
-    },
-    {
-    title: 't2',
-    author: 'jim',
-    id: 1,
-    content: ';lasdfjka;sldfkjas;ldfkja;sldfkj;alskjdfasdf'
-    }]
 
 router.get('/', async (req,res) => {
+    const postsData = await Post.findAll({
+        include: [{model: BlogUsers, attributes: [['username', 'author']]}],
+        attributes: ['title', 'id', 'owner_id',]
+    })
+    const posts = postsData.map((post => post.get({plain: true})))
+    console.log(posts)
     res.render('allPosts', {
-        post
+        posts
     })
 })
 
 router.get('/:id', async (req,res) => {
     const id = req.params.id
-    const reqPost = post[id]
-    res.render('post', reqPost)
+    const postData = await Post.findByPk(id,
+        {   
+            include: BlogUsers,
+            attributes: ['title', 'owner_id', 'content']
+        })
+        const post = postData.get({plain: true})
+        console.log(post.get({plain: true}))
+    res.render('post', post)
 })
 
 module.exports = router
