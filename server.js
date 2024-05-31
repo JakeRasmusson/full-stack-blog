@@ -14,13 +14,11 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-const sess = {
-    secret: 'Super secret secret',
-    resave: false,
-    saveUninitialized: false,
-  };
   
-app.use(session(sess));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+
+}));
 
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')

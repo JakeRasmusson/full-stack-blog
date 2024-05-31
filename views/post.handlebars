@@ -1,12 +1,25 @@
-<h2>{{{title}}}</h2>
-<h3>{{{bloguser.username}}}</h3>
-<p>{{{content}}}</p>
+<h2>{{{post.title}}}</h2>
+<h3>Blog post by: {{{post.bloguser.username}}}</h3>
+<p>{{{post.content}}}</p>
+
+{{#if loggedIn}}
+<button>Edit Post</button> <button>Add Comments</button>
+{{/if}}
 
 
+
+{{#if post.comments}}
 <ul>
-    {{#each comments}}
+    <h2>Comments</h2>
+    
+    {{#each post.comments}}
     <li>
         <h3>{{this.content}}</h3>
+        <p>Comment by: {{this.bloguser.username}}</p>
     </li>
     {{/each}}
+
 </ul>
+
+{{/if}}
+

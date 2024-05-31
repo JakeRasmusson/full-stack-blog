@@ -10,9 +10,15 @@
         <h1>Welcome to the blog!</h1>
     </header>
 <nav>
-    <a>Blogs</a>
+    <a href="/posts">Blogs</a>
+    {{#unless loggedIn}}
     <a>Login</a>
     <a>Sign up</a>
+    {{/unless}}
+    {{#if loggedIn}}
+    <a>Dashboard</a>
+    <a>Log Out</a>
+    {{/if}}
 </nav>
 
 {{{body}}}

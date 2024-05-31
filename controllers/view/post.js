@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
         const posts = postsData.map((post => post.get({plain: true})))
         console.log(posts)
         res.render('allPosts', {
-            posts
+            posts, loggedIn: req.session.loggedIn
         })
         
     } catch (err) {
@@ -22,15 +22,17 @@ router.get('/', async (req,res) => {
 
 router.get('/:id', async (req,res) => {
     try {
+        req.session.loggedIn = true;
         const id = req.params.id
         const postData = await Post.findByPk(id,
             {   
-                include: [BlogUsers, Comments],
+                include: [BlogUsers, {
+                    model:Comments, include : [BlogUsers]
+                }],
                 attributes: ['title', 'owner_id', 'content']
             })
             const post = postData.get({plain: true})
-            console.log(post)
-        res.render('post', post)
+        res.render('post', {post, loggedIn: req.session.loggedIn})
         
     } catch (err) {
         console.log(err)

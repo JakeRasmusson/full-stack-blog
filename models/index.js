@@ -6,7 +6,7 @@ const Comments = require('./comment')
 
 //Relationships
 BlogUsers.hasMany(Post, {
-    foreignKey: 'id'
+    foreignKey: 'owner_id'
 })
 Post.belongsTo(BlogUsers, {
     foreignKey: 'owner_id'

@@ -3,10 +3,15 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 
 router.post('/', async (req,res) => {
+    if (req.session.loggedIn) {
+
+    } else {
+        res.status(401).send('Not authorized')
+    }
     try {
         const { title, content, owner_id } = req.body
         console.log(title, content, owner_id)
-        const post = await Post.create({id: 6 ,title, content, owner_id})
+        const post = await Post.create({title, content, owner_id})
         
         res.status(200).send('Post created Succesfully')
     } catch (err) {
