@@ -10,7 +10,7 @@ router.post('/', async (req,res) => {
         res.status(200).send('Comment created Succesfully')
     } catch (err) {
         console.log(err)
-        res.status(400).send('Internal Server Error')
+        res.status(500).send('Internal Server Error')
     }
 })
 
@@ -25,7 +25,7 @@ router.put('/:id', async (req,res) => {
         res.status(200).send('Comment Update Succesful')
     } catch (err) {
         console.log(err)
-        res.status(400).send('Internal Server Error')
+        res.status(500).send('Internal Server Error')
     }
 })
 
@@ -40,7 +40,7 @@ router.delete('/:id', async (req,res) => {
         res.status(200).send('Comment delete successful')
     } catch (err) {
         console.log(err)
-        res.status(400).send('Internal Server Error')
+        res.status(500).send('Internal Server Error')
     }
 })
 

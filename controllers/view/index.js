@@ -9,7 +9,7 @@ router.use('/user', userRoutes)
 router.use('/dashboard', dashboardRoutes)
 
 router.get('/', async(req, res) => {
-    res.render('home')
+    res.render('home', {loggedIn: req.session.loggedIn})
 })
 
 

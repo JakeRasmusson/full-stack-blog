@@ -16,7 +16,7 @@ router.post('/', async (req,res) => {
         res.status(200).send('Post created Succesfully')
     } catch (err) {
         console.log(err)
-        res.status(400).send('Internal Server Error')
+        res.status(500).send('Internal Server Error')
     }
 })
 
@@ -31,7 +31,7 @@ router.put('/:id', async (req,res) => {
         res.status(200).send('Post Update Succesful')
     } catch (err) {
         console.log(err)
-        res.status(400).send('Internal Server Error')
+        res.status(500).send('Internal Server Error')
     }
 })
 
@@ -46,7 +46,7 @@ router.delete('/:id', async (req,res) => {
         res.status(200).send('Post delete successful')
     } catch (err) {
         console.log(err)
-        res.status(400).send('Internal Server Error')
+        res.status(500).send('Internal Server Error')
     }
 })
 
