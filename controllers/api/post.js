@@ -4,19 +4,19 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 router.post('/', async (req,res) => {
     if (req.session.loggedIn) {
-
+        try {
+            const { title, content, owner_id } = req.body
+            console.log(title, content, owner_id)
+            const post = await Post.create({title, content, owner_id})
+            
+            res.status(200).send('Post created Succesfully')
+        } catch (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        }
+        
     } else {
         res.status(401).send('Not authorized')
-    }
-    try {
-        const { title, content, owner_id } = req.body
-        console.log(title, content, owner_id)
-        const post = await Post.create({title, content, owner_id})
-        
-        res.status(200).send('Post created Succesfully')
-    } catch (err) {
-        console.log(err)
-        res.status(500).send('Internal Server Error')
     }
 })
 

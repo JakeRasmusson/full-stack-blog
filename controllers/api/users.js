@@ -3,6 +3,7 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 
 router.post('/', async (req, res) => {
+  console.log(req.body)
     try {
       const dbUserData = await BlogUsers.create({
         username: req.body.username,
@@ -57,23 +58,23 @@ router.post('/login', async (req, res) => {
     try {
       const dbUserData = await BlogUsers.findOne({
         where: {
-          email: req.body.email,
+          username: req.body.username,
         },
       });
   
       if (!dbUserData) {
         res
           .status(400)
-          .json({ message: 'Incorrect email or password. Please try again!' });
+          .json({ message: 'Incorrect username or password. Please try again!' });
         return;
       }
   
-      const validPassword = await dbUserData.checkPassword(req.body.password);
+      const validPassword = await dbUserData.isCorrectPassword(req.body.password);
   
       if (!validPassword) {
         res
           .status(400)
-          .json({ message: 'Incorrect email or password. Please try again!' });
+          .json({ message: 'Incorrect username or password. Please try again!' });
         return;
       }
   
@@ -92,6 +93,7 @@ router.post('/login', async (req, res) => {
   
   // Logout
   router.post('/logout', (req, res) => {
+    console.log('User logged out')
     if (req.session.loggedIn) {
       req.session.destroy(() => {
         res.status(204).end();
