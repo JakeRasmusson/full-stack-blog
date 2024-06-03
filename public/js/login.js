@@ -34,6 +34,7 @@ signUpForm.addEventListener('submit', async (e) => {
     const username = document.getElementById('signup-username').value
     const password = document.getElementById('signup-password').value
     const email = document.getElementById('signup-email').value
+    console.log(username, password, email)
     if(!username || !password) {
         alert('Please fill out the required fields') 
         return } 

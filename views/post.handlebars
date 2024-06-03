@@ -1,35 +1,85 @@
-<div class="{{post.id}}">
-<h2>{{{post.title}}}</h2>
-<h3>Blog post by: {{{post.bloguser.username}}}</h3>
-<p>{{{post.content}}}</p>
+{{!-- <div class="{{post.id}}">
+  <h2>{{{post.title}}}</h2>
+  <h3>Blog post by: {{{post.bloguser.username}}}</h3>
+  <p>{{{post.content}}}</p> --}}
+  <div class="flex-grow">
 
-{{#if loggedIn}}
-<h2>Create a comment:</h2>
-<form id="createComment">  
+
+  <div class="card  bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">{{post.title}}</h2>
+      <p>{{post.content}}</p>
+      <p>Blog by: {{post.bloguser.author}}</p>
+      <p>Date Created:</p>
+      <div class="card-actions justify-end">
+        {{#if loggedIn}}
+        <button class="btn btn-primary" onclick="addcommentmodal.showModal()">Add Comment</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+  {{!-- {{#if loggedIn}}
+  <h2>Create a comment:</h2>
+  <form id="createComment">
     <label for="commentContent">Content</label><br>
-  <input type="text" id="commentContent" name="commentContent"><br>
-  <input type="submit" value="submit">
-</form>
-{{/if}}
+    <input type="text" id="commentContent" name="commentContent"><br>
+    <input type="submit" value="submit">
+  </form>
+  {{/if}}
 
+  --}}
 
+  {{#if post.comments}}
+  <ul>
+    <h2 class="m-8 text-center">Comments</h2>
 
-{{#if post.comments}}
-<ul>
-    <h2>Comments</h2>
-    
     {{#each post.comments}}
     <li>
-        <h3>{{this.content}}</h3>
-        <p>Comment by: {{this.bloguser.username}}</p>
+      <div class="card w-250 bg-base-100 shadow-xl">
+        <div class="card-body">
+          <p>{{this.content}}</p>
+          <h2 class="card-title">Comment by: {{this.bloguser.username}}</h2>
+        </div>
+      </div>
+      {{!-- <h3>{{this.content}}</h3>
+      <p>Comment by: {{this.bloguser.username}}</p> --}}
     </li>
     {{/each}}
 
-</ul>
-{{/if}}
+  </ul>
+  {{/if}}
 
 </div>
 
+
+<dialog id="addcommentmodal" class="modal">
+  <div class="modal-box">
+        <h2>Add comment</h2>
+    <form id="addComment">
+      <label class="input input-bordered flex items-center gap-2">
+          <path fill-rule="evenodd"
+            d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+            clip-rule="evenodd" />
+        </svg>
+        <input type="text" id="commentContent" class="grow" value="content" />
+      </label>
+      <button class="btn btn-outline btn-primary">Submit</button>
+    </form>
+
+
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
 
 <script src="/js/post.js"></script>

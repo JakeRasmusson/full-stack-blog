@@ -1,19 +1,63 @@
 
-<button id="createPost">Create a Post</button>
 {{#if posts}}
 <ol id="postList">
 {{#each posts}}
         
 <li id="{{this.id}}">
-    <h2>{{this.title}}</h2>
+    {{!-- <h2>{{this.title}}</h2>
     <a href="/posts/{{this.id}}">Link to post</a>
     <p>{{this.content}}</p>
-    <button class="deletePost">Delete Post</button>
+    <button class="deletePost">Delete Post</button> --}}
+        <div class="card  bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">{{this.title}}</h2>
+    <p>{{this.content}}</p>
+    <p>Date Created:</p>
+    <div class="card-actions justify-end">
+        <a href="/posts/{{this.id}}"><button class="btn btn-primary">Link to post</button></a>
+      <button class=" deletePost btn btn-primary">Delete Post</button>
+    </div>
+  </div>
+</div>
+
+
+
 </li>
 {{/each}}
 
 </ol>
 {{/if}}
+<button class="btn btn-active btn-lg w-20 btn-primary text-center" onclick="create_post_modal.showModal()">Create a blog</button>
+<dialog id="create_post_modal" class="modal">
+  <div class="modal-box">
+        <h2>Create post</h2>
+    <form id="addPost">
+      <label class="input input-bordered flex items-center gap-2">
+          <path fill-rule="evenodd"
+            d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+            clip-rule="evenodd" />
+        </svg>
+        <input type="text" id="postTitle" class="grow" value="title" />
+      </label>
+            <label class="input input-bordered flex items-center gap-2">
+          <path fill-rule="evenodd"
+            d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+            clip-rule="evenodd" />
+        </svg>
+        <input type="text" id="postContent" class="grow" value="Content" />
+      </label>
+      <button class="btn btn-outline btn-primary">Submit</button>
+    </form>
+
+
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
 
 

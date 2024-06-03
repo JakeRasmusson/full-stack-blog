@@ -1,64 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
-    <link href="/css/output.css" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <h1>Welcome to the blog!</h1>
-    </header>
-{{!-- <nav>
-    <a href="/posts">Blogs</a>
-    {{#unless loggedIn}}
-    <a href="/user">Login</a>
-    <a href="/user">Sign up</a>
-    {{/unless}}
-    {{#if loggedIn}}
-    <a href="/dashboard">Dashboard</a>
-    <button id="logout">Logout</button>
-    {{/if}}
-    
-</nav> --}}
+<html lang="en" class="h-full">
 
-<div class="navbar bg-base-100">
-  <div class="flex-1">
-    <a class="btn btn-ghost text-xl" href="/posts">Posts</a>
-  </div>
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Link</a></li>
-      <li>
-        <details>
-          <summary>
-            Parent
-          </summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+  <link href="/css/output.css" rel="stylesheet">
+</head>
+
+<body class="h-full">
+  <div class="w-[100%] min-h-screen flex flex-col">
+    <div class="navbar flex justify-between bg-black mb-10">
+      <div class="flex-1">
+        <a class="btn btn-ghost text-xl" href="/posts">Posts</a>
+      </div>
+      <h1>Welcome to the blog!</h1>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal px-1 mr-9">
+          <li>
+            <details>
+              <summary>
+                User
+              </summary>
+              <ul class="p-2 bg-base-100 rounded-t-none z-50">
                 {{#unless loggedIn}}
-            <li><a href="/user">Login</a></li>
-            <li><a href="/user">Sign up</a></li>
+                <li><a href="/user">Login</a></li>
+                <li><a href="/user">Sign up</a></li>
                 {{/unless}}
                 {{#if loggedIn}}
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a id="logout">Logout</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a id="logout">Logout</a></li>
                 {{/if}}
-          </ul>
-        </details>
-      </li>
-    </ul>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    {{{body}}}
+
+
+    <footer class="text-center">
+      Thanks for stopping by!
+    </footer>
+
   </div>
-</div>
-
-
-
-{{{body}}}
-
-
-<footer>
-    You smell!
-</footer>
 </body>
 <script src="/js/home.js"></script>
+
 </html>
