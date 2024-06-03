@@ -25,6 +25,7 @@ loginForm.addEventListener('submit', async (e) => {
             console.log(err)
         }
         loginForm.reset()
+        location.reload()
 })
 
 
@@ -50,4 +51,5 @@ signUpForm.addEventListener('submit', async (e) => {
         console.log(err)
     }
     signUpForm.reset()
+    location.reload()
 })

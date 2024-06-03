@@ -9,7 +9,6 @@ router.get('/', async (req,res) => {
             attributes: ['title', 'id', 'owner_id', 'content']
         })
         const posts = postsData.map((post => post.get({plain: true})))
-        console.log(posts)
         res.render('allPosts', {
             posts, loggedIn: req.session.loggedIn
         })
@@ -22,7 +21,6 @@ router.get('/', async (req,res) => {
 
 router.get('/:id', async (req,res) => {
     try {
-        req.session.loggedIn = true;
         const id = req.params.id
         const postData = await Post.findByPk(id,
             {   

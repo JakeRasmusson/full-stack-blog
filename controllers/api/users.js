@@ -3,7 +3,6 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 
 router.post('/', async (req, res) => {
-  console.log(req.body)
     try {
       const dbUserData = await BlogUsers.create({
         username: req.body.username,
