@@ -20,8 +20,7 @@ loginForm.addEventListener('submit', async (e) => {
                     body: JSON.stringify({username, password})
                 }
             )
-            loginForm.reset()
-            location.reload()
+            location.href = '/dashboard'
         } catch (err) {
             console.log(err)
         }
@@ -48,8 +47,7 @@ signUpForm.addEventListener('submit', async (e) => {
                 body: JSON.stringify({username, password, email})
             }
         )
-        signUpForm.reset()
-        location.reload()
+        location.href = '/dashboard'
     } catch (err) {
         console.log(err)
     }

@@ -10,7 +10,6 @@ if (commentForm) {
             alert('Please fill out the required content field')
             return
         }
-        console.log(post_id)
         try {
             const createComment = await fetch('/api/comments/', 
                 {

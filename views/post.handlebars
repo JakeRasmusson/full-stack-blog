@@ -10,7 +10,7 @@
       <h2 class="card-title">{{post.title}}</h2>
       <p>{{post.content}}</p>
       <p>Blog by: {{post.bloguser.username}}</p>
-      <p>Date Created:</p>
+      <p>Date Created: {{format_date post.createdAt}}</p>
       <div class="card-actions justify-end">
         {{#if loggedIn}}
         <button class="btn btn-primary" onclick="addcommentmodal.showModal()">Add Comment</button>
@@ -44,6 +44,7 @@
         <div class="card-body">
           <p>{{this.content}}</p>
           <h2 class="card-title">Comment by: {{this.bloguser.username}}</h2>
+          <p>{{format_date this.createdAt}}</p>
         </div>
       </div>
       {{!-- <h3>{{this.content}}</h3>

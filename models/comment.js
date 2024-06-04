@@ -35,7 +35,6 @@ Comments.init(
         }
     },{
         sequelize,
-        timestamps: false,
         modelName: 'comments'
     }
 )

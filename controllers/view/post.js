@@ -6,7 +6,7 @@ router.get('/', async (req,res) => {
     try {
         const postsData = await Post.findAll({
             include: [{model: BlogUsers, attributes: [['username', 'author']]}],
-            attributes: ['title', 'id', 'owner_id', 'content']
+            attributes: ['title', 'id', 'owner_id', 'content', 'createdAt']
         })
         const posts = postsData.map((post => post.get({plain: true})))
         res.render('allPosts', {
@@ -27,7 +27,7 @@ router.get('/:id', async (req,res) => {
                 include: [{model:BlogUsers, attributes: {exclude: ['password']}},  {
                     model:Comments, include : [{model:BlogUsers, attributes: {exclude: ['password']}}]
                 }],
-                attributes: ['title', 'owner_id', 'content', 'id']
+                attributes: ['title', 'owner_id', 'content', 'id', 'createdAt' ]
             })
             const post = postData.get({plain: true})
             console.log(post)
