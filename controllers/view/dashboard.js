@@ -4,16 +4,16 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 
 
-router.get('/:id', async (req,res) => {
+router.get('/', async (req,res) => {
     try {
-        const id = req.params.id
+        const id = req.session.userId
         const postsData = await Post.findAll({
             where: {
                 owner_id: id,
             }
         })
         const posts = postsData.map((post => post.get({plain: true})))
-        res.render('dashboard', {posts})
+        res.render('dashboard', {posts, loggedIn: req.session.loggedIn})
         
     } catch (err) {
         console.log(err)

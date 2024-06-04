@@ -27,9 +27,10 @@ router.get('/:id', async (req,res) => {
                 include: [BlogUsers, {
                     model:Comments, include : [BlogUsers]
                 }],
-                attributes: ['title', 'owner_id', 'content']
+                attributes: ['title', 'owner_id', 'content', 'id']
             })
             const post = postData.get({plain: true})
+            console.log(post)
         res.render('post', {post, loggedIn: req.session.loggedIn})
         
     } catch (err) {

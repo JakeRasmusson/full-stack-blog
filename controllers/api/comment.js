@@ -4,8 +4,10 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 router.post('/', async (req,res) => {
     try {
-        console.log(title, content, owner_id)
-        const comment = await Comments.create(req.body)
+        const {content, post_id} = req.body
+        const owner_id = req.session.userId
+        console.log(content, post_id, owner_id)
+        const comment = await Comments.create({content, post_id, owner_id})
         
         res.status(200).send('Comment created Succesfully')
     } catch (err) {

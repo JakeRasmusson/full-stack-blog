@@ -5,11 +5,11 @@
   <div class="flex-grow">
 
 
-  <div class="card  bg-base-100 shadow-xl">
+  <div class="card  bg-base-100 shadow-xl" id="{{post.id}}">
     <div class="card-body">
       <h2 class="card-title">{{post.title}}</h2>
       <p>{{post.content}}</p>
-      <p>Blog by: {{post.bloguser.author}}</p>
+      <p>Blog by: {{post.bloguser.username}}</p>
       <p>Date Created:</p>
       <div class="card-actions justify-end">
         {{#if loggedIn}}
@@ -61,6 +61,7 @@
   <div class="modal-box">
         <h2>Add comment</h2>
     <form id="addComment">
+      <input type="hidden" id="postId" value="{{post.id}}" />
       <label class="input input-bordered flex items-center gap-2">
           <path fill-rule="evenodd"
             d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"

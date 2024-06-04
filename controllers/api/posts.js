@@ -5,7 +5,8 @@ const { BlogUsers, Post, Comments } = require('../../models')
 router.post('/', async (req,res) => {
     if (req.session.loggedIn) {
         try {
-            const { title, content, owner_id } = req.body
+            const { title, content } = req.body
+            const owner_id = req.session.userId
             console.log(title, content, owner_id)
             const post = await Post.create({title, content, owner_id})
             

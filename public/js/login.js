@@ -20,12 +20,12 @@ loginForm.addEventListener('submit', async (e) => {
                     body: JSON.stringify({username, password})
                 }
             )
-            console.log(userSignIn)
+            loginForm.reset()
+            location.reload()
         } catch (err) {
             console.log(err)
         }
-        loginForm.reset()
-        location.reload()
+        
 })
 
 
@@ -34,7 +34,7 @@ signUpForm.addEventListener('submit', async (e) => {
     const username = document.getElementById('signup-username').value
     const password = document.getElementById('signup-password').value
     const email = document.getElementById('signup-email').value
-    console.log(username, password, email)
+    console.log(username, password)
     if(!username || !password) {
         alert('Please fill out the required fields') 
         return } 
@@ -48,9 +48,9 @@ signUpForm.addEventListener('submit', async (e) => {
                 body: JSON.stringify({username, password, email})
             }
         )
+        signUpForm.reset()
+        location.reload()
     } catch (err) {
         console.log(err)
     }
-    signUpForm.reset()
-    location.reload()
 })

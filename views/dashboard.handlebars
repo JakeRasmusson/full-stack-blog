@@ -3,11 +3,7 @@
 <ol id="postList">
 {{#each posts}}
         
-<li id="{{this.id}}">
-    {{!-- <h2>{{this.title}}</h2>
-    <a href="/posts/{{this.id}}">Link to post</a>
-    <p>{{this.content}}</p>
-    <button class="deletePost">Delete Post</button> --}}
+<li id="{{this.id}}" class="post">
         <div class="card  bg-base-100 shadow-xl">
   <div class="card-body">
     <h2 class="card-title">{{this.title}}</h2>
@@ -15,7 +11,7 @@
     <p>Date Created:</p>
     <div class="card-actions justify-end">
         <a href="/posts/{{this.id}}"><button class="btn btn-primary">Link to post</button></a>
-      <button class=" deletePost btn btn-primary">Delete Post</button>
+      <button class="deletePost btn btn-primary" data-id="{{this.id}}">Delete Post</button>
     </div>
   </div>
 </div>

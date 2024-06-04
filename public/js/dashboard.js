@@ -19,27 +19,29 @@ addPost.addEventListener('submit', async (e) => {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({title, content, user})
+                    body: JSON.stringify({title, content})
                 }
             )
+            addPost.reset()
+            location.reload()
     } catch (err) {
         console.log(err)
     }
-    addPost.reset()
-    location.reload()
+    
 })
 
 if (deletePostBtn) {
     deletePostBtn.addEventListener('click', async (e) => {
         if (e.target.classList[0] == 'deletePost'){
             console.log('success')
-            const id = e.target.parentElement.parentElement.parentElement.parentElement.id
+            const id = e.target.dataset.id
             try {
                 const deletePost = await fetch(`/api/posts/${id}`, 
                     {
                         method: 'delete'
                     }
                 )
+                location.reload()
                 console.log(deletePost)
             } catch (err) {
                 console.log(err)
