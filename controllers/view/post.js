@@ -24,8 +24,8 @@ router.get('/:id', async (req,res) => {
         const id = req.params.id
         const postData = await Post.findByPk(id,
             {   
-                include: [BlogUsers, {
-                    model:Comments, include : [BlogUsers]
+                include: [{model:BlogUsers, attributes: {exclude: ['password']}},  {
+                    model:Comments, include : [{model:BlogUsers, attributes: {exclude: ['password']}}]
                 }],
                 attributes: ['title', 'owner_id', 'content', 'id']
             })

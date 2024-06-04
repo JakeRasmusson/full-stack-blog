@@ -5,6 +5,10 @@ const { BlogUsers, Post, Comments } = require('../../models')
 
 
 router.get('/', async (req,res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/')
+        return
+    } 
     try {
         const id = req.session.userId
         const postsData = await Post.findAll({
